@@ -20,9 +20,8 @@
             top: 10px;
             left: 10px;
         }
-       
     </style>
-/head>
+</head>
 <body>
     <div class="header text-center">
         <div class="back-arrow-container">
