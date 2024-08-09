@@ -38,7 +38,7 @@
     <div class="container my-4">
         <div class="menu-box text-center ">
             <h4>O QUE VOCÊ QUER FAZER?</h4>
-            <p>Ajude a aprimorar os serviços públicos por meio de reclamações,<br>ou sugestões, ou ainda, registre uma denúncia.</p>
+            <p>Ajude a aprimorar os nossos serviços por meio de reclamações,<br>sugestõess, ou ainda, registre uma denúncia.</p>
         </div>
     </div>
 
