@@ -40,7 +40,7 @@
     <div class="container my-4">
         <div class="menu-box text-center ">
             <h4>O QUE VOCÊ QUER FAZER?</h4>
-            <p>Ajude a aprimorar os serviços públicos por meio de reclamações,<br>ou sugestões, ou ainda, registre uma denúncia.</p>
+            <p>Ajude a aprimorar os nossos serviços por meio de reclamações.<br>ou sugestões, ou ainda, registre uma denúncia.</p>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
 
             <div class="col-md-6 col-lg- mb-6">
                 <div class="subtitle text-center">
-                    <a href="reclamaçoes.php">
+                    <a href="Reclamação.php">
                         <div class="subtitle-content">
                             <img src="imagens botoes/reclamaçoes-removebg-preview.png" alt="Reclamações Imagem" class="subtitle-img img-fluid">
                             <h3>Reclamações</h3>
