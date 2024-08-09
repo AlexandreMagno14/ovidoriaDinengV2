@@ -42,7 +42,7 @@
         <div class="card mx-auto shadow-sm" style="max-width: 600px;">
             <div class="card-body">
                 <h2 class="card-title text-center">Envie sua Denuncia</h2>
-                <form action="respostta.php" method="post" enctype="multipart/form-data">
+                <form action="respostareclamaçoes.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nome">Nome:</label>
                         <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome">
