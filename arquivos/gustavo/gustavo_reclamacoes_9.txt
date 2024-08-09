@@ -1,0 +1,6 @@
+  <div class="form-group">
+                    <label for="anexo">Anexo:</label>
+                    <input type="file" id="anexo" name="anexo">
+<div class="form-group checkbox-group">
+                    <input type="checkbox" id="anonima" name="anonima">
+                    <label for="anonima" class="label-checkbox">Enviar Anonimamente</label>

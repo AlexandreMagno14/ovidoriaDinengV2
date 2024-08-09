@@ -1,0 +1,182 @@
+@font-face {
+    font-family: 'Horyzen Headline';
+    src: url('fontes/Horyzen Headline(5-1).otf') format('opentype');
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.header {
+    position: relative;
+}
+.back-arrow-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+/* Cabeçalho */
+.header {
+    font-family: 'Horyzen Headline', sans-serif;
+    background-color: #005a8b;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed; /* Fixa o header no topo */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Garante que o header fique sobre outros elementos */
+}
+
+.back-arrow-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.back-arrow {
+    display: inline-block;
+    background-color: #0077b6;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.header img {
+    height: 100px;
+}
+
+.dineng1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.navbar-custom {
+    background-color: #0077b6;
+    margin-top: -1px; /* Ajuste para evitar sobreposição com o header fixo */
+}
+
+.navbar-custom .navbar-brand {
+    color: white;
+    font-weight: bold;
+}
+
+.navbar-custom .navbar-brand.active {
+    color: #ffffff;
+}
+
+/* Estilo para o container do formulário */
+.card {
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    margin-top: 55px; /* Ajuste para compensar o espaço ocupado pelo header fixo */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.form-check-label {
+    margin-left: 5px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Estilo do footer */
+.footer {
+    margin-top: 40px;
+    padding: 10px;
+    background-color: #0077b6;
+    color: #ffffff;
+}
+
+.footer img {
+    height: 20px;
+}
+
+
+/* Botão de chat */
+.chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #005a8b;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+}
+
+.chat-button img {
+    width: 100%;
+    height: auto;
+}
+
+.chat-container {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 300px;
+    border: 1px solid #005a8b;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    color: #000000;
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #dddddd;
+}
+
+.input-container input {
+    flex: 1;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+.input-container button {
+    margin-left: 10px;
+    background-color: #005a8b;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
