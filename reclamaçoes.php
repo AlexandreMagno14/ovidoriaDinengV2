@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reclamação - Dineng Ouvidoria</title>
+    <title>Denúncias - Dineng Ouvidoria</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="Denuncia.css">
     <link rel="stylesheet" href="chat.css"> <!-- Referência para o arquivo CSS do chatbot padronizado -->
@@ -31,7 +31,7 @@
             </a>
         </div>
         <img src="imagens botoes/Dineng_Logo_02.png" alt="Dineng Logo" style="height: 100px;">
-        <h1 class="dineng1">Reclamação</h1>
+        <h1 class="dineng1">Denuncias</h1>
     </div>
     <nav class="navbar navbar-expand-lg navbar-custom">
         <a class="navbar-brand" href="Fala dineng.php">Home</a>
@@ -52,8 +52,8 @@
                         <input type="email" id="email" name="email" class="form-control" placeholder="Seu e-mail">
                     </div>
                     <div class="form-group">
-                        <label for="Denuncia">Reclamação:</label>
-                        <textarea id="Denuncia" name="Denuncia" class="form-control" rows="4" placeholder="Descreva sua Reclamação" required maxlength="2000"></textarea>
+                        <label for="Denuncia">Denúncia:</label>
+                        <textarea id="Denuncia" name="Denuncia" class="form-control" rows="4" placeholder="Descreva sua Denúncia" required maxlength="2000"></textarea>
                     </div>
                     <div class="form-check mb-3">
                         <input type="checkbox" name="anonimo" value="on" class="form-check-input" id="anonimo">
@@ -109,4 +109,3 @@
     </script>
 </body>
 </html>
-
