@@ -3,152 +3,77 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Denuncia - Dineng Ouvidoria</title>
+    <title>Reclamação - Dineng Ouvidoria</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="Denuncia.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="denuncia.js" defer></script>
-    <link rel="stylesheet" href="chat.css">
-    <script src="chat.js" defer></script>
+    <link rel="stylesheet" href="chat.css"> <!-- Referência para o arquivo CSS do chatbot padronizado -->
+    <script src="chat.js" defer></script> <!-- Referência para o arquivo JavaScript do chatbot -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .header {
+            position: relative;
+        }
+        .back-arrow-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+       
+    </style>
 </head>
-<body class="d-flex flex-column min-vh-100">
-
-    <!-- Botão de Voltar -->
-    <a href="Fala dineng.php" class="btn btn-outline-primary mb-3">
-        <img src="imagens botoes/de-volta (1).png" alt="Voltar">
-    </a>
-
-    <!-- Cabeçalho -->
-    <div class="header text-center mb-3">
-        <img src="imagens botoes/Dineng_Logo_02.png" alt="Dineng Logo" class="img-fluid" style="height: 100px;">
-        <h1 class="dineng1">Denuncia</h1>
+<body>
+    <div class="header text-center">
+        <div class="back-arrow-container">
+            <a href="javascript:history.back()" class="back-arrow">
+                <img src="imagens botoes/de-volta (1).png" alt="Voltar" style="height: 40px;">
+            </a>
+        </div>
+        <img src="imagens botoes/Dineng_Logo_02.png" alt="Dineng Logo" style="height: 100px;">
+        <h1 class="dineng1">Reclamação</h1>
     </div>
-
-    <!-- Navegação -->
-    <div class="nav d-flex justify-content-around mb-4">
-        <a href="Fala dineng.php" class="btn btn-link">Home</a>
-        <a href="sugestoes.php" class="btn btn-link">Sugestões</a>
-        <a href="rastreamento.php" class="btn btn-link">Solicitações</a>
-    </div>
-
-    <!-- Contêiner Principal -->
-    <div class="main flex-grow-1 d-flex justify-content-center align-items-center">
-        <div class="content mx-auto p-4 bg-light rounded text-center" style="width: 300px; height: 300px;">
-        <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include "conexao.php";
-    if (!$conn) {
-        die("Conexão falhou: " . mysqli_connect_error());
-    }
-
-    $nome = trim($_POST['nome']);
-    $email = trim($_POST['email']);
-    $Denuncia = trim($_POST['Denuncia']);
-    $arquivo = $_FILES['arquivo'];
-    $anonimo = isset($_POST['anonimo']) ? 'on' : 'off';
-    $dataregistro = date('Y-m-d H:i:s');
-
-    if ($anonimo == 'on') {
-        $nome = 'Anônimo';
-
-        // Consulta corrigida para verificar registros existentes
-        $sql = "SELECT * FROM `registros` WHERE nome = 'Anônimo'";
-        $result = mysqli_query($conn, $sql);
-        $count = mysqli_num_rows($result);
-
-        if ($count > 0) {
-            $suffix = $count + 1;
-            $nome = 'Anônimo_' . $suffix;
-        }
-
-        $email = 'anonimo';
-
-        // Consulta corrigida para verificar registros existentes
-        $sql = "SELECT * FROM `registros` WHERE email = 'anonimo'";
-        $result = mysqli_query($conn, $sql);
-        $count = mysqli_num_rows($result);
-
-        if ($count > 0) {
-            $suffix = $count + 1;
-            $email = 'anonimo_' . $suffix;
-        }
-    }
-
-    // Consulta corrigida para verificar arquivos existentes
-    $sql = "SELECT * FROM `registros` WHERE nome = '$nome' OR arquivo_nome LIKE '%$nome%'";
-    $result = mysqli_query($conn, $sql);
-    $count = mysqli_num_rows($result);
-
-    if ($count > 0) {
-        $suffix = $count + 1;
-        $arquivo_nome = $nome . "_Denuncia_" . $suffix . "." . pathinfo($arquivo['name'], PATHINFO_EXTENSION);
-    } else {
-        $arquivo_nome = $nome . "_Denuncia." . pathinfo($arquivo['name'], PATHINFO_EXTENSION);
-    }
-
-    $Cod_Denuncia = strtoupper(substr(md5(uniqid()), 0, 2) . rand(100000, 999999));
-
-    $status_reclamacao = "Recebida";
-
-    $status_etapas = array(
-        "Recebida",
-        "Em análise",
-        "Em processo",
-        "Concluída",
-        "Arquivada"
-    );
-
-    $descricao = array(
-        "Recebida" => "Denúncia recebida ao órgão competente para análise.",
-        "Em análise" => "Denúncia em análise pelo órgão competente.",
-        "Em processo" => "Denúncia em processo de investigação.",
-        "Concluída" => "Denúncia concluída e resolvida.",
-        "Arquivada" => "Denúncia arquivada por falta de provas ou por não ter sido possível identificar o autor."
-    );
-
-    $user_folder = "arquivos/" . $nome;
-    if (!file_exists($user_folder)) {
-        if (!mkdir($user_folder, 0777, true)) {
-            die("Erro ao criar diretório: " . error_get_last()['message']);
-        }
-    }
-
-    if (!empty($arquivo['name'])) {
-        $arquivo_tipo = $arquivo['type'];
-        $arquivo_tmp = $arquivo['tmp_name'];
-        $arquivo_destino = $user_folder . "/" . $arquivo_nome;
-        if (move_uploaded_file($arquivo_tmp, $arquivo_destino)) {
-            $link_arquivo = $arquivo_destino;
-            // Consulta de inserção corrigida
-            $sql = "INSERT INTO `registros` (nome, email, Denuncia, arquivo_nome, Cod_Denuncia, status_denuncia, descricao, datareclamacao) 
-                    VALUES ('$nome', '$email', '$Reclamacao', '$link_arquivo', '$Cod_Denuncia', '$status_denuncia', '" . $descricao[$status_denuncia] . "', '$dataregistro')";
-        } else {
-            die("Erro ao uploadar arquivo: " . error_get_last()['message']);
-        }
-    } else {
-        // Consulta de inserção corrigida
-        $sql = "INSERT INTO `registros`(nome, email, Denuncia, Cod_Denuncia, status_denuncia, descricao, datareclamacao) 
-                VALUES ('$nome', '$email', '$Denuncia', '$Cod_Denuncia', '$status_denuncia', '" . $descricao[$status_denuncia] . "', '$dataregistro')";
-    }
-
-    if (mysqli_query($conn, $sql)) {
-        echo "<div class='alert alert-success'>Reclamação enviada com sucesso! Seu código de rastreamento é: <strong>$Cod_Denuncia</strong></div>";
-    } else {
-        echo "<div class='alert alert-danger'>Erro ao enviar Reclamação: " . mysqli_error($conn) . "</div>";
-    }
-
-    mysqli_close($conn);
-}
-?>
-
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="Fala dineng.php">Home</a>
+        <a class="navbar-brand" href="sugestoes.php">Sugestões</a>
+        <a class="navbar-brand active" href="solicitaçoes.php">Solicitações</a>
+    </nav>
+    <div class="container mt-4 mb-4">
+        <div class="card mx-auto shadow-sm" style="max-width: 600px;">
+            <div class="card-body">
+                <h2 class="card-title text-center">Envie sua Denuncia</h2>
+                <form action="respostta.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Seu e-mail">
+                    </div>
+                    <div class="form-group">
+                        <label for="Denuncia">Reclamação:</label>
+                        <textarea id="Denuncia" name="Denuncia" class="form-control" rows="4" placeholder="Descreva sua Reclamação" required maxlength="2000"></textarea>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox" name="anonimo" value="on" class="form-check-input" id="anonimo">
+                        <label class="form-check-label" for="anonimo">Anônimo</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="arquivo">Selecione o arquivo:</label>
+                        <input type="file" name="arquivo" class="form-control-file">
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Enviar" class="btn btn-success btn-block">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-    <!-- Rodapé -->
-    <div class="footer text-center mt-auto py-3">
+    <footer class="footer text-center mt-4">
         <img src="imagens botoes/Dineng_Logo_02.png" alt="Logo" style="height: 20px;">
         &copy; 2024 Dineng Ouvidoria. Todos os direitos reservados.
-    </div>
+    </footer>
 
     <!-- Botão de Chat -->
     <div class="chat-button" id="chat-button" onclick="toggleChat()">
@@ -159,13 +84,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="chat-container" id="chat-container">
         <div id="chat-box" class="chat-box"></div>
         <div class="input-container">
-            <input type="text" id="user-input" class="form-control" placeholder="Digite sua pergunta...">
-            <button type="button" class="btn btn-primary mt-2" onclick="sendMessage()">Enviar</button>
+            <input type="text" id="user-input" placeholder="Digite sua pergunta...">
+            <button type="button" onclick="sendMessage()">Enviar</button>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleChat() {
+            const chatContainer = document.getElementById('chat-container');
+            chatContainer.style.display = chatContainer.style.display === 'none' || chatContainer.style.display === '' ? 'flex' : 'none';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            if (input.value.trim()) {
+                const message = document.createElement('div');
+                message.textContent = input.value;
+                chatBox.appendChild(message);
+                input.value = '';
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+    </script>
 </body>
 </html>
+
