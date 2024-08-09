@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sugestão - Dineng Ouvidoria</title>
+    <title>Denúncias - Dineng Ouvidoria</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="Denuncia.css">
     <link rel="stylesheet" href="chat.css"> <!-- Referência para o arquivo CSS do chatbot padronizado -->
@@ -18,7 +18,9 @@
         .back-arrow-container {
             position: absolute;
             top: 10px;
-            left: 10px;}
+            left: 10px;
+        }
+       
     </style>
 </head>
 <body>
@@ -29,18 +31,18 @@
             </a>
         </div>
         <img src="imagens botoes/Dineng_Logo_02.png" alt="Dineng Logo" style="height: 100px;">
-        <h1 class="dineng1">Sugestões</h1>
+        <h1 class="dineng1">Denuncias</h1>
     </div>
     <nav class="navbar navbar-expand-lg navbar-custom">
         <a class="navbar-brand" href="Fala dineng.php">Home</a>
-        <a class="navbar-brand" href="reclamaçoes.php">Reclamações</a>
+        <a class="navbar-brand" href="sugestoes.php">Sugestões</a>
         <a class="navbar-brand active" href="solicitaçoes.php">Solicitações</a>
     </nav>
     <div class="container mt-4 mb-4">
         <div class="card mx-auto shadow-sm" style="max-width: 600px;">
             <div class="card-body">
-                <h2 class="card-title text-center">Envie sua Sugestão</h2>
-                <form action="resposta sugestoes.php" method="post" enctype="multipart/form-data">
+                <h2 class="card-title text-center">Envie sua Denuncia</h2>
+                <form action="respostta.php" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nome">Nome:</label>
                         <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome">
@@ -50,8 +52,8 @@
                         <input type="email" id="email" name="email" class="form-control" placeholder="Seu e-mail">
                     </div>
                     <div class="form-group">
-                        <label for="Sugestao">Sugestão:</label>
-                        <textarea id="Sugestao" name="Sugestao" class="form-control" rows="4" placeholder="Descreva sua Sugestão" required maxlength="2000"></textarea>
+                        <label for="Denuncia">Denúncia:</label>
+                        <textarea id="Denuncia" name="Denuncia" class="form-control" rows="4" placeholder="Descreva sua Denúncia" required maxlength="2000"></textarea>
                     </div>
                     <div class="form-check mb-3">
                         <input type="checkbox" name="anonimo" value="on" class="form-check-input" id="anonimo">
