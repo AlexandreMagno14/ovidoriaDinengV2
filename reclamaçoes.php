@@ -22,7 +22,7 @@
         }
        
     </style>
-</head>
+/head>
 <body>
     <div class="header text-center">
         <div class="back-arrow-container">
